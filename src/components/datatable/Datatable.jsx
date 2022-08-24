@@ -6,6 +6,7 @@ import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../const/BaseURL";
 
 const Datatable = ({ columns }) => {
   const location = useLocation()
@@ -17,7 +18,7 @@ const Datatable = ({ columns }) => {
   }, [data])
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/${path}/${id}`)
+      await axios.delete(`${BASE_URL}/${path}/${id}`)
       setList(list.filter(item => item._id !== id))
     } catch (err) {
 

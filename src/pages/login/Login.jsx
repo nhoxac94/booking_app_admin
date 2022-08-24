@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../../const/BaseURL'
 import { AuthContext } from '../../context/AuthContext'
 import './login.scss'
 
@@ -25,7 +26,7 @@ const Login = () => {
     e.preventDefault()
     dispatch({ type: "LOGIN_START" })
     try {
-      const res = await axios.post('/auth/login', credentials)
+      const res = await axios.post(`${BASE_URL}/auth/login`, credentials)
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
         navigate('/')
@@ -36,8 +37,6 @@ const Login = () => {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data })
     }
   }
-  console.log(credentials)
-  console.log(error)
 
   return (
     <div className='login'>

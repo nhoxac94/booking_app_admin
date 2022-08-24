@@ -5,6 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import axios from "axios";
 import { userColumns } from "../../datatablesource";
+import { BASE_URL } from "../../const/BaseURL";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -29,7 +30,7 @@ const New = ({ inputs, title }) => {
         ...info,
         image: url
       }
-      await axios.post('/auth/register', newUser)
+      await axios.post(`${BASE_URL}/auth/register`, newUser)
     } catch (err) {
       console.log(err)
     }
